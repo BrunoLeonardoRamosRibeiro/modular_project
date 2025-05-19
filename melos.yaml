@@ -1,0 +1,4 @@
+name: modular_project
+packages:
+  - core/**
+  - features/**
