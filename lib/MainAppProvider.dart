@@ -1,0 +1,1 @@
+String getAppName() => "Flutter Mult-Modular App";
