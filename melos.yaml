@@ -11,6 +11,7 @@ command:
       flutter: ">=1.17.0"
 
     dependencies:
+      dartz: ^0.10.1
       dio: ^5.8.0+1
       get_it: ^8.0.3
       injectable: ^2.5.0
