@@ -15,11 +15,12 @@ dependencies:
   json_annotation: ^4.9.0
   domain:
     path: ../../../core/domain
-
   datastore:
     path: ../../../core/datastore
   data:
     path: ../../../core/data
+  extensions:
+    path: ../../../core/extensions
   flutter:
     sdk: flutter
 
