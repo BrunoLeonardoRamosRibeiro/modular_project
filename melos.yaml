@@ -16,6 +16,7 @@ command:
       get_it: ^8.0.3
       injectable: ^2.5.0
       json_annotation: ^4.9.0
+      connectivity_plus: ^6.1.4
       pretty_dio_logger: ^1.4.0
       retrofit: ^4.4.2
 
