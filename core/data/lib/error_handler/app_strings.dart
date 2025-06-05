@@ -5,6 +5,8 @@ class AppStrings {
   static const String forbidden = "forbidden";
   static const String unauthorized = "unauthorized";
   static const String internalServerError = "internal_server_error";
+
+  /// LOCAL ERROR FROM APP
   static const String connectTimeout = "connect_time_out";
   static const String cancelled = "cancelled";
   static const String receiveTimeout = "receive_time_out";
