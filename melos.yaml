@@ -19,6 +19,7 @@ command:
       connectivity_plus: ^6.1.4
       pretty_dio_logger: ^1.4.0
       retrofit: ^4.4.2
+      shared_preferences: ^2.5.3
 
     dev_dependencies:
       injectable_generator: ^2.7.0

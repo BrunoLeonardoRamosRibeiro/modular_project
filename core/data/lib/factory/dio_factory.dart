@@ -4,7 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
-  DioFactory();
+  final String baseUrl;
+  final String accessToken;
+  final String language;
+
+  DioFactory({
+    required this.baseUrl,
+    required this.accessToken,
+    required this.language,
+  });
 
   Future<Dio> getDio() async {
     Dio dio = Dio();
@@ -12,8 +20,8 @@ class DioFactory {
     Map<String, String> headers = {
       contentType: applicationJson,
       accept: applicationJson,
-      authorization: "your_access_token", // TODO: get access token here
-      defaultLanguage: "app_language", // TODO: get app lang here
+      authorization: accessToken, // TODO: get access token here
+      defaultLanguage: language, // TODO: get app lang here
       clientId: "app_client", // TODO: get app client  id here
     };
 
