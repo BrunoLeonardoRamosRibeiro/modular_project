@@ -15,6 +15,9 @@ dependencies:
   injectable: ^2.5.0
 
   dartz: ^0.10.1
+
+  datastore:
+    path: ../../core/datastore
   domain:
     path: ../../core/domain
   flutter:
