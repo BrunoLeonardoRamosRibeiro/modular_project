@@ -11,6 +11,7 @@ class PreferencesProviderImpl implements PreferencesProvider {
   String getAppLanguage() {
     return _sharedPreferences.getString(PreferencesStrings.appLanguageKey) ??
         PreferencesStrings.appLanguageDefault;
+    //
   }
 
   @override
