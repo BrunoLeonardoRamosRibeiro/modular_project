@@ -7,6 +7,7 @@ import 'package:login/data/remote/login_remote_data_source_impl.dart';
 import 'package:login/data/repository/login_repository_impl.dart';
 import 'package:login/data/service/login_service.dart';
 import 'package:login/domain/repositories/login_repository.dart';
+import 'package:login/domain/usecase/login_usecase.dart';
 
 @module
 abstract class LoginModule {
@@ -33,5 +34,10 @@ abstract class LoginModule {
     LoginRemoteDataSource loginRemoteDataSource,
   ) {
     return LoginRepositoryImpl(loginRemoteDataSource);
+  }
+
+  @lazySingleton
+  LoginUseCase provideLoginUseCase(LoginRepository loginRepository) {
+    return LoginUseCase(loginRepository);
   }
 }
