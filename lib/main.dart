@@ -2,6 +2,7 @@ import 'package:app_settings/provider/AppSettingsProvider.dart';
 import 'package:datastore/provider/session/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
+import 'package:login/login.dart';
 
 import 'di/injection.dart';
 
@@ -63,6 +64,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
+    doLogin();
     setState(() {});
   }
 

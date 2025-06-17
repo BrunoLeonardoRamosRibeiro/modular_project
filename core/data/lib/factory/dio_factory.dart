@@ -26,7 +26,7 @@ class DioFactory {
     };
 
     dio.options = BaseOptions(
-      baseUrl: "your_base_url",
+      baseUrl: baseUrl,
       headers: headers,
       receiveTimeout: const Duration(seconds: 60),
       sendTimeout: const Duration(seconds: 60),

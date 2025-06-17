@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:login/data/request/login_request.dart';
 import 'package:modular_project/di/injection.dart';
 import 'package:datastore/provider/session/session_provider_impl.dart';
@@ -14,4 +15,14 @@ class Calculator {
 void doLogin() async {
   final loginUsecase = getIt<LoginUseCase>();
   final loginRequest = LoginRequest("mina@gmail.com", "123456");
+  final result = await loginUsecase.execute(loginRequest);
+
+  result.fold(
+    (failure) {
+      debugPrint("Login Failure: ${failure.message}");
+    },
+    (loginModel) {
+      debugPrint("Login Success: ${loginModel.name}");
+    },
+  );
 }

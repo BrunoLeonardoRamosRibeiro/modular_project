@@ -1,6 +1,7 @@
 import 'package:data/network_info/network_info.dart';
 import 'package:data/network_info/network_info_impl.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:login/data/remote/login_remote_data_source.dart';
 import 'package:login/data/remote/login_remote_data_source_impl.dart';
@@ -38,6 +39,8 @@ abstract class LoginModule {
 
   @lazySingleton
   LoginUseCase provideLoginUseCase(LoginRepository loginRepository) {
+
+    debugPrint("CARREGA O PROVIDER LOGIN USECASE");
     return LoginUseCase(loginRepository);
   }
 }
