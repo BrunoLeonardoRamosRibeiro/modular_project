@@ -17,12 +17,13 @@ void doLogin() async {
   final loginRequest = LoginRequest("mina@gmail.com", "123456");
   final result = await loginUsecase.execute(loginRequest);
 
+  print('RODANDO O RESULT');
   result.fold(
     (failure) {
-      debugPrint("Login Failure: ${failure.message}");
+      print("Login Failure: ${failure.message}");
     },
     (loginModel) {
-      debugPrint("Login Success: ${loginModel.name}");
+      print("Login Success: ${loginModel.name}");
     },
   );
 }

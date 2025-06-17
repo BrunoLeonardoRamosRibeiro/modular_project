@@ -28,8 +28,8 @@ class DioFactory {
     dio.options = BaseOptions(
       baseUrl: baseUrl,
       headers: headers,
-      receiveTimeout: const Duration(seconds: 60),
-      sendTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 10),
+      sendTimeout: const Duration(seconds: 10),
     );
 
     // add logger in debug mode only NOT release
