@@ -17,7 +17,7 @@ class ProdSessionProviderImpl implements SessionProvider {
 
   @override
   String getClientId() {
-    return _sharedPreferences.getString(SessionStrings.clientIdKey) ?? "";
+    return Uuid().v4();
   }
 
   @override
