@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(
-              'Session Client ID: ${sessionProvider.getClientId()}',
+              'Session ClientId: ${sessionProvider.getClientId()}',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
