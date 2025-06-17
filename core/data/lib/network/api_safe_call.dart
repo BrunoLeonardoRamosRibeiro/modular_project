@@ -17,7 +17,7 @@ Future<Either<Failure, T>> safeApiCall<T>(
       return Left(ErrorHandler.handle(error).failure);
     }
   } else {
-    //  no internet connection
+    //    no internet connection
     return Left(DataSource.noInternetConnection.getFailure());
   }
 }
