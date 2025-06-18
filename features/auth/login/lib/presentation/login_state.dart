@@ -39,7 +39,9 @@ class LoginInvalid extends LoginState {
 }
 
 // success
-class LoginSuccess extends LoginState {}
+class LoginSuccess extends LoginState {
+
+}
 
 // error
 class LoginError extends LoginState {
