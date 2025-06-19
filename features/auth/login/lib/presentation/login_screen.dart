@@ -27,9 +27,9 @@ class _LoginScreenState extends State<LoginScreen> {
         create: (context) => LoginBloc(loginUsecase),
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
-            return SingleChildScrollView(
+            return Padding(
+              padding: const EdgeInsetsGeometry.all(16),
               child: Column(
-                spacing: 16,
                 children: [
                   TextField(
                     controller: usernameController,
