@@ -17,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final loginUsecase = getIt<LoginUseCase>();
   final TextEditingController usernameController = TextEditingController();
 
-  // final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +42,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? state.usernameError
                           : null,
                     ),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: passwordController,
+                    onChanged: (value) {
+                      context.read<LoginBloc>().add(PasswordChanged(value));
+                    },
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                      errorText: state is LoginInvalid
+                          ? state.passwordError
+                          : null,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<LoginBloc>().add(
+                        LoginButtonPressed(
+                          usernameController.text,
+                          passwordController.text,
+                        ),
+                      );
+                    },
+                    child: Text("Login"),
                   ),
                 ],
               ),
