@@ -3,8 +3,15 @@ import 'package:presentation/state_renderer/state_renderer_type.dart';
 
 class StateRenderer extends StatelessWidget {
   final StateRendererType stateRendererType;
+  final String message;
+  final String title;
 
-  const StateRenderer({super.key, required this.stateRendererType});
+  StateRenderer({
+    super.key,
+    required this.stateRendererType,
+    this.message = "Loading...",
+    this.title = "Error",
+  });
 
   var _isDialogDismissed = false;
   var _isDialogShowing = false;
@@ -16,10 +23,9 @@ class StateRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        return _showPopupDialog(context, _buildLoadingWidget());
+        return _showPopupLoadingDialog(context, _buildLoadingWidget());
       case StateRendererType.popupErrorState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return _showPopupErrorDialog(context,  _buildErrorWidget());
       case StateRendererType.fullScreenLoadingState:
         // TODO: Handle this case.
         throw UnimplementedError();
@@ -44,29 +50,57 @@ class StateRenderer extends StatelessWidget {
       children: [
         CircularProgressIndicator(),
         SizedBox(height: 10),
-        Text("Loading..."),
+        Text(message),
       ],
     );
   }
 
-  Widget _buildEmptyWidget() {
+  Widget _buildErrorWidget() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        CircularProgressIndicator(),
+        Icon(Icons.error_outline_outlined, size: 70, color: Colors.red),
         SizedBox(height: 10),
-        Text("Loading..."),
+        Text(
+          title,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        Text(message),
       ],
     );
   }
 
-  Widget _showPopupDialog(BuildContext context, Widget content) {
+  Widget _showPopupLoadingDialog(BuildContext context, Widget content) {
     if (!_isThereCurrentDialogShowing(context)) {
       _isDialogShowing = true;
       WidgetsBinding.instance.addPersistentFrameCallback(
         (_) => showDialog(
           context: context,
           builder: (context) => AlertDialog(content: content),
+        ),
+      );
+    }
+    return Container();
+  }
+
+  Widget _showPopupErrorDialog(BuildContext context, Widget content) {
+    if (!_isThereCurrentDialogShowing(context)) {
+      _isDialogShowing = true;
+      WidgetsBinding.instance.addPersistentFrameCallback(
+        (_) => showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: content,
+            actions: [
+              TextButton(
+                onPressed: () {
+                  _isDialogDismissed = true;
+                  Navigator.of(context, rootNavigator: true).pop(true);
+                },
+                child: Text("Close"),
+              ),
+            ],
+          ),
         ),
       );
     }
