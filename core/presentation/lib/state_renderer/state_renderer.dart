@@ -6,12 +6,17 @@ class StateRenderer extends StatelessWidget {
 
   const StateRenderer({super.key, required this.stateRendererType});
 
+  var _isDialogDismissed = false;
+  var _isDialogShowing = false;
+
+  _isThereCurrentDialogShowing(BuildContext context) =>
+      ModalRoute.of(context)?.isCurrent != true;
+
   @override
   Widget build(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return _showPopupDialog(context, _buildLoadingWidget());
       case StateRendererType.popupErrorState:
         // TODO: Handle this case.
         throw UnimplementedError();
@@ -31,6 +36,40 @@ class StateRenderer extends StatelessWidget {
         // TODO: Handle this case.
         throw UnimplementedError();
     }
-    ;
+  }
+
+  Widget _buildLoadingWidget() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CircularProgressIndicator(),
+        SizedBox(height: 10),
+        Text("Loading..."),
+      ],
+    );
+  }
+
+  Widget _buildEmptyWidget() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CircularProgressIndicator(),
+        SizedBox(height: 10),
+        Text("Loading..."),
+      ],
+    );
+  }
+
+  Widget _showPopupDialog(BuildContext context, Widget content) {
+    if (!_isThereCurrentDialogShowing(context)) {
+      _isDialogShowing = true;
+      WidgetsBinding.instance.addPersistentFrameCallback(
+        (_) => showDialog(
+          context: context,
+          builder: (context) => AlertDialog(content: content),
+        ),
+      );
+    }
+    return Container();
   }
 }
