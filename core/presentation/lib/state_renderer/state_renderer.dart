@@ -33,8 +33,7 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.fullScreenErrorState:
         return _showFullScreenContent(_buildErrorWidget(showRetryButton: true));
       case StateRendererType.emptyState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return _showFullScreenContent(_buildEmptyWidget());
       case StateRendererType.contentState:
         // TODO: Handle this case.
         throw UnimplementedError();
@@ -42,6 +41,17 @@ class StateRenderer extends StatelessWidget {
         // TODO: Handle this case.
         throw UnimplementedError();
     }
+  }
+
+  Widget _buildEmptyWidget() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.inbox, size: 70, color: Colors.grey),
+        SizedBox(height: 10),
+        Text("No Data Available"),
+      ],
+    );
   }
 
   Widget _buildLoadingWidget() {
