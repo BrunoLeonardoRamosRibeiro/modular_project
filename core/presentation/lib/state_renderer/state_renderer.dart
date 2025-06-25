@@ -17,30 +17,31 @@ class StateRenderer extends StatelessWidget {
   var _isDialogShowing = false;
 
   _isThereCurrentDialogShowing(BuildContext context) =>
-      ModalRoute.of(context)?.isCurrent != true;
+      ModalRoute
+          .of(context)
+          ?.isCurrent != true;
 
   @override
   Widget build(BuildContext context) {
     switch (stateRendererType) {
-      case StateRendererType.popupLoadingState:
-        return _showPopupLoadingDialog(context, _buildLoadingWidget());
-      case StateRendererType.popupErrorState:
-        return _showPopupErrorDialog(context,  _buildErrorWidget());
-      case StateRendererType.fullScreenLoadingState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case StateRendererType.fullScreenErrorState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case StateRendererType.emptyState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case StateRendererType.contentState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case StateRendererType.nome:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+    case StateRendererType.popupLoadingState:
+    return _showPopupLoadingDialog(context, _buildLoadingWidget());
+    case StateRendererType.popupErrorState:
+    return _showPopupErrorDialog(context, _buildErrorWidget());
+    case StateRendererType.fullScreenLoadingState:
+    return _showFullScreenLoading(_buildLoadingWidget());
+    case StateRendererType.fullScreenErrorState:
+    // TODO: Handle this case.
+    throw UnimplementedError();
+    case StateRendererType.emptyState:
+    // TODO: Handle this case.
+    throw UnimplementedError();
+    case StateRendererType.contentState:
+    // TODO: Handle this case.
+    throw UnimplementedError();
+    case StateRendererType.nome:
+    // TODO: Handle this case.
+    throw UnimplementedError();
     }
   }
 
@@ -70,14 +71,22 @@ class StateRenderer extends StatelessWidget {
     );
   }
 
+  Widget _showFullScreenLoading(Widget content) {
+    return Container(
+      color: Colors.white,
+      child: Center(child: content),
+    );
+  }
+
   Widget _showPopupLoadingDialog(BuildContext context, Widget content) {
     if (!_isThereCurrentDialogShowing(context)) {
       _isDialogShowing = true;
       WidgetsBinding.instance.addPersistentFrameCallback(
-        (_) => showDialog(
-          context: context,
-          builder: (context) => AlertDialog(content: content),
-        ),
+            (_) =>
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(content: content),
+            ),
       );
     }
     return Container();
@@ -87,21 +96,23 @@ class StateRenderer extends StatelessWidget {
     if (!_isThereCurrentDialogShowing(context)) {
       _isDialogShowing = true;
       WidgetsBinding.instance.addPersistentFrameCallback(
-        (_) => showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: content,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  _isDialogDismissed = true;
-                  Navigator.of(context, rootNavigator: true).pop(true);
-                },
-                child: Text("Close"),
-              ),
-            ],
-          ),
-        ),
+            (_) =>
+            showDialog(
+              context: context,
+              builder: (context) =>
+                  AlertDialog(
+                    content: content,
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          _isDialogDismissed = true;
+                          Navigator.of(context, rootNavigator: true).pop(true);
+                        },
+                        child: Text("Close"),
+                      ),
+                    ],
+                  ),
+            ),
       );
     }
     return Container();
