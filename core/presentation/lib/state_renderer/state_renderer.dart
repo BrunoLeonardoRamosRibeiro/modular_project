@@ -23,11 +23,30 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (_isDialogShowing) {
+      _isDialogShowing = false;
+      return Container();
+    }
+
+    if (_isDialogDismissed) {
+      _isDialogDismissed = false;
+      return Container();
+    }
+
+    if (_isThereCurrentDialogShowing(context)){
+      Navigator.of(context, rootNavigator: true).pop(true);
+    }
+
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
         return _showPopupLoadingDialog(context, _buildLoadingWidget());
       case StateRendererType.popupErrorState:
-        return _showPopupErrorDialog(context, _buildErrorWidget());
+        if (_isThereCurrentDialogShowing(context)) {
+          Navigator.of(context, rootNavigator: true).pop(true);
+          return Container();
+        } else {
+          return _showPopupErrorDialog(context, _buildErrorWidget());
+        }
       case StateRendererType.fullScreenLoadingState:
         return _showFullScreenContent(_buildLoadingWidget());
       case StateRendererType.fullScreenErrorState:
@@ -35,11 +54,8 @@ class StateRenderer extends StatelessWidget {
       case StateRendererType.emptyState:
         return _showFullScreenContent(_buildEmptyWidget());
       case StateRendererType.contentState:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case StateRendererType.nome:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+      default:
+        return Container();
     }
   }
 
