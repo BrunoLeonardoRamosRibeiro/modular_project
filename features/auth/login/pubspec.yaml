@@ -24,6 +24,8 @@ dependencies:
     path: ../../../core/data
   extensions:
     path: ../../../core/extensions
+  presentation:
+    path: ../../../core/presentation
   modular_project:
     path: ../../..
 
