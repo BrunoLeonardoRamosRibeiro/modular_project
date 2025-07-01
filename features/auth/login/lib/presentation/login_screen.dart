@@ -68,6 +68,17 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.read<LoginBloc>().add(
+                LoginButtonPressed(
+                  usernameController.text,
+                  passwordController.text,
+                ),
+              );
+            },
+            child: Text("Login"),
+          ),
         ],
       ),
     );

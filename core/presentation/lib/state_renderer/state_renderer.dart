@@ -109,7 +109,7 @@ class StateRenderer extends StatelessWidget {
   Widget _showPopupLoadingDialog(BuildContext context, Widget content) {
     if (!_isThereCurrentDialogShowing(context)) {
       _isDialogShowing = true;
-      WidgetsBinding.instance.addPersistentFrameCallback(
+      WidgetsBinding.instance.addPostFrameCallback(
         (_) => showDialog(
           context: context,
           builder: (context) => AlertDialog(content: content),
