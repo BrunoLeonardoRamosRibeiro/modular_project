@@ -2,14 +2,23 @@ name: navigator
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.8.0
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
+  modular_project:
+    path: ../..
+  main:
+    path: ../../features/home/main
+  login:
+    path: ../../features/auth/login
+
 
 dev_dependencies:
   flutter_test:
