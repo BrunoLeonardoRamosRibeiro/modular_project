@@ -5,30 +5,35 @@ import 'package:login/presentation/login_bloc.dart';
 import 'package:login/presentation/login_event.dart';
 import 'package:login/presentation/login_state.dart';
 import 'package:modular_project/di/injection.dart';
+import 'package:navigator/navigation_bloc.dart';
+import 'package:navigator/navigation_event.dart';
+import 'package:navigator/navigation_routes.dart';
+import 'package:navigator/navigation_types.dart';
 import 'package:presentation/state_renderer/state_renderer.dart';
 import 'package:presentation/state_renderer/state_renderer_type.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final loginUsecase = getIt<LoginUseCase>();
+class LoginScreen extends StatelessWidget {
+  final loginUseCase = getIt<LoginUseCase>();
   final TextEditingController usernameController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Login")),
       body: BlocProvider(
-        create: (context) => LoginBloc(loginUsecase),
+        create: (context) => LoginBloc(loginUseCase),
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
+            if (state is LoginSuccess) {
+              // call the navigation on successful login to navigate to main screen
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                _navigateToHome(context);
+              });
+            }
+
             return Stack(
               children: [
                 _buildMainScreenContent(context, state),
@@ -41,10 +46,18 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void _navigateToHome(BuildContext context) {
+    // context.read<NavigationBloc>().add(NavigateToHome());
+    context.read<NavigationBloc>().add(
+      NavigateToRoute(NavigationRoutes.home, NavigationType.push),
+    );
+  }
+
   Widget _buildMainScreenContent(BuildContext context, LoginState state) {
     return Padding(
-      padding: const EdgeInsetsGeometry.all(16),
+      padding: EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
             controller: usernameController,
@@ -56,7 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
               errorText: state is LoginInvalid ? state.usernameError : null,
             ),
           ),
-          const SizedBox(height: 8),
           TextField(
             controller: passwordController,
             onChanged: (value) {
@@ -70,11 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
+              final username = usernameController.text;
+              final password = passwordController.text;
               context.read<LoginBloc>().add(
-                LoginButtonPressed(
-                  usernameController.text,
-                  passwordController.text,
-                ),
+                LoginButtonPressed(username, password),
               );
             },
             child: Text("Login"),
@@ -86,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildStateRenderer(BuildContext context, LoginState state) {
     if (state.stateRendererType == StateRendererType.contentState) {
-      // display any overlay
+      // we don't want to display any overlay when the content of the screen is displayed
       return SizedBox.shrink();
     }
 
@@ -94,9 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
       stateRendererType: state.stateRendererType,
       message: (state is LoginError) ? state.errorMessage ?? "" : "",
       retryActionFunction: () {
-        context.read<LoginBloc>().add(
-          LoginButtonPressed(usernameController.text, passwordController.text),
-        );
+        final username = usernameController.text;
+        final password = passwordController.text;
+        context.read<LoginBloc>().add(LoginButtonPressed(username, password));
       },
     );
   }

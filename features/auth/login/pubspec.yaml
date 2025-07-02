@@ -16,6 +16,8 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
+  navigator:
+    path: ../../../core/navigator
   domain:
     path: ../../../core/domain
   datastore:
