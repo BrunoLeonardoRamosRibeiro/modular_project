@@ -1,19 +1,25 @@
 # modular_project
 
 Estudo de Flutter Mult Modular e Bloc
+How to create a module?
+1- create directory --> mkdir core
 
-## Getting Started
+2- --> cd core
 
-This project is a starting point for a Flutter application.
+3- --> flutter create --template=package enter_module_name_here 3- --> flutter create
+--template=package data ============= OR ==============
 
-A few resources to get you started if this is your first Flutter project:
+1- --> flutter create --template=package core/data
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
-dart run build_runner watch --delete-conflicting-outputs
+=============================
+1- dart pub add melos
+2- dart pub global activate melos
+3- export PATH="$PATH":"$HOME/.pub-cache/bin"
+4- dart pub outdated
+5- dart pub upgrade --major-versions
+6- open ~/.zshrc
+7- export PATH="$JAVA_HOME/bin:$PATH:$HOME/.pub-cache/bin"
+// copy and paste it in .zshrc to generate injection.config.dart
+1- dart run build_runner watch --delete-conflicting-outputs
+2- build->flutter->build apk (optional if the file is not auto generated after running the command
+line above)
