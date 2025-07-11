@@ -19,7 +19,7 @@ class MainScreen extends StatelessWidget {
 }
 
 class MainScreenView extends StatelessWidget {
-  const MainScreenView({super.key});
+  MainScreenView({super.key});
 
   final List<Widget> _screens = [MoviesScreen(), SettingsScreen()];
 
@@ -38,27 +38,22 @@ class MainScreenView extends StatelessWidget {
           return _screens[state.selectedIndex];
         },
       ),
-      bottomNavigationBar: AppBar(
-        title: BlocBuilder<MainScreenBloc, MainScreenState>(
-          builder: (context, state) {
-            return BottomNavigationBar(
-              currentIndex: state.selectedIndex,
-              onTap: (index) {
-                context.read<MainScreenBloc>().add(ChangeTab(index));
-              },
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.movie),
-                  label: "Movies",
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: "Settings",
-                ),
-              ],
-            );
-          },
-        ),
+      bottomNavigationBar: BlocBuilder<MainScreenBloc, MainScreenState>(
+        builder: (context, state) {
+          return BottomNavigationBar(
+            currentIndex: state.selectedIndex,
+            onTap: (index) {
+              context.read<MainScreenBloc>().add(ChangeTab(index));
+            },
+            items: [
+              BottomNavigationBarItem(icon: Icon(Icons.movie), label: "Movies"),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: "Settings",
+              ),
+            ],
+          );
+        },
       ),
     );
   }
