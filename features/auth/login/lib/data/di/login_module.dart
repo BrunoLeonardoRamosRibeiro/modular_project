@@ -1,5 +1,4 @@
 import 'package:data/network_info/network_info.dart';
-import 'package:data/network_info/network_info_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
@@ -15,11 +14,6 @@ abstract class LoginModule {
   @lazySingleton
   LoginService provideLoginService(Dio dio) {
     return LoginService(dio);
-  }
-
-  @lazySingleton
-  NetworkInfo provideNetworkInfo() {
-    return NetworkInfoImpl();
   }
 
   @lazySingleton

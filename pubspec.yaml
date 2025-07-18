@@ -42,6 +42,8 @@ dependencies:
     path: features/auth/login
   register:
     path: features/auth/register
+  movies:
+    path: features/movies
 
   flutter:
     sdk: flutter
