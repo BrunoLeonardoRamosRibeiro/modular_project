@@ -7,8 +7,6 @@ import 'package:login/presentation/login_state.dart';
 import 'package:modular_project/di/injection.dart';
 import 'package:navigator/navigation_bloc.dart';
 import 'package:navigator/navigation_event.dart';
-import 'package:navigator/navigation_routes.dart';
-import 'package:navigator/navigation_types.dart';
 import 'package:presentation/state_renderer/state_renderer.dart';
 import 'package:presentation/state_renderer/state_renderer_type.dart';
 
