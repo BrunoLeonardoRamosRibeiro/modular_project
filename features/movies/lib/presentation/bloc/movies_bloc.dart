@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/domain/usecase/movies_usecase.dart';
-import 'package:movies/presentation/movies_event.dart';
-import 'package:movies/presentation/movies_state.dart';
+import 'package:movies/presentation/bloc/movies_event.dart';
+import 'package:movies/presentation/bloc/movies_state.dart';
+
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   final MoviesUseCase moviesUseCase;
