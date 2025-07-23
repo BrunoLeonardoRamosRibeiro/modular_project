@@ -14,4 +14,6 @@ MoviesResponse _$MoviesResponseFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$MoviesResponseToJson(MoviesResponse instance) =>
-    <String, dynamic>{'movies': instance.movies};
+    <String, dynamic>{
+      'movies': instance.movies,
+    };

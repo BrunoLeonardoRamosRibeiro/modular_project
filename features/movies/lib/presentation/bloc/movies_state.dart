@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:movies/domain/model/movie_model.dart';
+import 'package:movies/domain/model/movie.dart';
 import 'package:presentation/state_renderer/state_renderer_type.dart';
 
 class MoviesState extends Equatable {

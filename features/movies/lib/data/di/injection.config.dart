@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -20,30 +19,28 @@ import 'package:movies/domain/repository/movies_repository.dart' as _i591;
 import 'package:movies/domain/usecase/movies_usecase.dart' as _i365;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final moviesModule = _$MoviesModule();
     gh.lazySingleton<_i809.MoviesService>(
-      () => moviesModule.provideMoviesService(gh<_i361.Dio>()),
-    );
+        () => moviesModule.provideMoviesService(gh<_i361.Dio>()));
     gh.lazySingleton<_i835.MoviesRemoteDataSource>(
-      () => moviesModule.provideMoviesRemoteDataSource(
-        gh<_i809.MoviesService>(),
-        gh<_i131.NetworkInfo>(),
-      ),
-    );
-    gh.lazySingleton<_i591.MoviesRepository>(
-      () => moviesModule.provideMoviesRepository(
-        gh<_i835.MoviesRemoteDataSource>(),
-      ),
-    );
+        () => moviesModule.provideMoviesRemoteDataSource(
+              gh<_i809.MoviesService>(),
+              gh<_i131.NetworkInfo>(),
+            ));
+    gh.lazySingleton<_i591.MoviesRepository>(() => moviesModule
+        .provideMoviesRepository(gh<_i835.MoviesRemoteDataSource>()));
     gh.lazySingleton<_i365.MoviesUseCase>(
-      () => moviesModule.provideMoviesUseCase(gh<_i591.MoviesRepository>()),
-    );
+        () => moviesModule.provideMoviesUseCase(gh<_i591.MoviesRepository>()));
     return this;
   }
 }
