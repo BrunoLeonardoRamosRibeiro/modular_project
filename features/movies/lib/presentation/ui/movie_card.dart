@@ -59,7 +59,7 @@ class MovieCard extends StatelessWidget {
               movie.title,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -69,7 +69,7 @@ class MovieCard extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 10,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey,
               ),

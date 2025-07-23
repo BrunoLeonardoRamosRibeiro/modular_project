@@ -24,19 +24,16 @@ class MoviesScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => MoviesBloc(moviesUseCase),
-        child: BlocBuilder<MoviesBloc, MoviesState>(
-          builder: (context, state) {
-            return Stack(
-              children: [
-                if (state is MoviesSuccess)
-                  _buildMainScreenContent(context, state),
-                _buildStateRenderer(context, state),
-              ],
-            );
-          },
-        ),
+      body: BlocBuilder<MoviesBloc, MoviesState>(
+        builder: (context, state) {
+          return Stack(
+            children: [
+              if (state is MoviesSuccess)
+                _buildMainScreenContent(context, state),
+              _buildStateRenderer(context, state),
+            ],
+          );
+        },
       ),
     );
   }
