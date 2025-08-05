@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/api_safe_call.dart';
 import 'package:data/network_info/network_info.dart';
 import 'package:domain/model/failure.dart';
-import 'package:movies/data/remote/movies_remote_data_source.dart';
 import 'package:movies/data/response/movies_response.dart';
 import 'package:movies/data/service/movies_service.dart';
+import 'package:movies/data/source/remote/movies_remote_data_source.dart';
 
 class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource {
   final MoviesService moviesService;
