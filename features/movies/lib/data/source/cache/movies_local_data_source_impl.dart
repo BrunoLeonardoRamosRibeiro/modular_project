@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:movies/data/source/cache/movies_cache_data_source.dart';
+import 'package:movies/data/source/cache/movies_local_data_source.dart';
 import 'package:movies/domain/model/cached_movie.dart';
 
 class MoviesLocalDataSourceImpl extends MoviesLocalDataSource {
